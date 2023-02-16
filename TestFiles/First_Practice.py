@@ -8,6 +8,7 @@ from Contstans_Material.Contstant import Base_URL
 import selenium
 from selenium import webdriver
 import os
+from selenium.webdriver.common.by import By
 
 
 class TestCases(webdriver.Chrome):
@@ -19,12 +20,22 @@ class TestCases(webdriver.Chrome):
         super(TestCases, self).__init__(options=options)
         self.implicitly_wait(40)
         self.maximize_window()
-        print("Setup Complete")
+        print("Setup Complete.")
         
 
     def Land_Page(self):
         self.get(Base_URL)
-        print("Browser")
+        print("Browser Open.")
+        title = self.title
+        print("Title: ", title)
+    
+    def Radio_Button(self):
+        Radio_element = self.find_element(By.XPATH, "//div[@id='radio-btn-example']//fieldset").text
+        print(Radio_element)
+        
+
+
+
         
 
 

@@ -5,6 +5,7 @@ sys.path.append('D:\\New_Start\\Selenium\\Selenium_Testing')
 
 from Contstans_Material.Contstant import Base_URL
 
+import time
 import selenium
 from selenium import webdriver
 import os
@@ -29,9 +30,28 @@ class TestCases(webdriver.Chrome):
         title = self.title
         print("Title: ", title)
     
-    def Radio_Button(self):
-        Radio_element = self.find_element(By.XPATH, "//div[@id='radio-btn-example']//fieldset").text
-        print(Radio_element)
+    def Radio_Button(self, radio_option):
+        try:
+            Radio_element = self.find_element(By.XPATH, f"//input[@value='{radio_option}']")
+            Radio_element.click()
+            print(f"Radio Option {radio_option} Clicked")
+            Radio_Value = Radio_element.get_attribute('value')
+            print(Radio_Value)
+        except:
+            print("Radio Option Face Problems, Please Check it out.")
+
+
+    def Select_Country_By_Suggession_Class(self, Country):
+        Suggession_Field = self.find_element(By.XPATH, "//input[@id='autocomplete']")
+        Suggession_Field.clear()
+        Suggession_Field.send_keys(Country)
+        time.sleep(50)
+        
+        
+
+
+
+        
         
 
 

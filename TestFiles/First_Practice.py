@@ -59,7 +59,22 @@ class TestCases(webdriver.Chrome):
             except:
                 print("No Country Found.")
 
-            time.sleep(10)
+            time.sleep(5)
+        
+    def Dropdown(self, option):
+        Dropdown_field = self.find_element(By.XPATH, "//select[@id='dropdown-class-example']")
+        Dropdown_field.click()
+        print("Option Area Clicked")
+        time.sleep(2)
+
+        try:
+            Dropdown_options = self.find_element(By.XPATH, f"//option[@value='{option}']")
+            Dropdown_options.click()
+            print(f"{option} Clicked.")
+        except:
+            print("Dropdown Option Not Valid Please Fix it.")
+        time.sleep(5)
+
 
 
         

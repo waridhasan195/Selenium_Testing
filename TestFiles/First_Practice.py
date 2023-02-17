@@ -45,7 +45,27 @@ class TestCases(webdriver.Chrome):
         Suggession_Field = self.find_element(By.XPATH, "//input[@id='autocomplete']")
         Suggession_Field.clear()
         Suggession_Field.send_keys(Country)
-        time.sleep(50)
+        time.sleep(10)
+        Suggession_Country = self.find_elements(By.XPATH, "//ul[@id='ui-id-1']/li/div")
+
+        for country in Suggession_Country:
+            a = country.get_attribute('innerHTML')
+            try:
+                if a == Country:
+                    country.click()
+                    print(f"{a} Clicked")
+                else:
+                    print("Search Again")
+            except:
+                print("No Country Found.")
+
+            time.sleep(10)
+
+
+        
+
+
+
         
         
 

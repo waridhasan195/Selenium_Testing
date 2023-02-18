@@ -92,6 +92,22 @@ class TestCases(webdriver.Chrome):
 
         time.sleep(15)
 
+    def PopUp(self, popup_value):
+
+        popup_name = self.find_element(By.XPATH, "//input[@id='name']")
+        popup_name.clear()
+        popup_name.send_keys(popup_value)
+        confirm_popup = self.find_element(By.XPATH, "//input[@id='confirmbtn']")
+        confirm_popup.click()
+        time.sleep(5)
+        assert 'Warid' == popup_value, f"{popup_value}, Should be Warid"
+        popup_message = self.switch_to.alert
+        popup_message.accept("Accepted.")
+        
+        time.sleep(5)
+
+
+
 
 
 

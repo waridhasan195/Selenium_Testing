@@ -75,17 +75,22 @@ class TestCases(webdriver.Chrome):
             print("Dropdown Option Not Valid Please Fix it.")
         time.sleep(5)
 
-    def Checkbox(self, checkbox_option):
+    def Checkbox(self, *checkbox_options):
+        print("\nWorking on Multiple choice: ")
+
         Checkbox_Fields = self.find_elements(By.XPATH, '//input[@type="checkbox"]')
 
-        for Checkbox in Checkbox_Fields:
-            a = Checkbox.get_attribute('value')
-            if a == checkbox_option:
-                selected_option = self.find_element(By.XPATH, f'//input[@value="{checkbox_option}"]')
-                print(f"{selected_option} clicked.",)
-            else:
-                print("Checkbox Option Not Found")
-        time.sleep(5)
+        for check_option in checkbox_options:
+            for Checkbox in Checkbox_Fields:
+                a = Checkbox.get_attribute('value')
+
+                if a == check_option:
+                    selected_option = self.find_element(By.XPATH, f'//input[@value="{check_option}"]')
+                    selected_option.click()
+                    dd = selected_option.get_attribute('value')
+                    print(f"{dd} clicked.",)
+
+        time.sleep(15)
 
 
 
